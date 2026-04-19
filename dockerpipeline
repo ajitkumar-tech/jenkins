@@ -40,7 +40,7 @@ pipeline {
          stage('login to ecr') {
             steps {
                 sh """
-                    aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 748716953870.dkr.ecr.ap-south-1.amazonaws.com
+                    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 748716953870.dkr.ecr.us-east-1.amazonaws.com
                 """
             }
         }
@@ -56,7 +56,7 @@ pipeline {
         stage('Tag Image for ECR') {
             steps {
                 sh """
-                    docker tag docker:latest 748716953870.dkr.ecr.ap-south-1.amazonaws.com/docker:latest
+                    docker tag docker:latest 748716953870.dkr.ecr.us-east-1.amazonaws.com/docker:latest
                 """
             }
         }
@@ -64,7 +64,7 @@ pipeline {
         stage('Push Image to ECR') {
             steps {
                 sh """
-                    docker push 748716953870.dkr.ecr.ap-south-1.amazonaws.com/docker:latest
+                    docker push 748716953870.dkr.ecr.us-east-1.amazonaws.com/docker:latest
                 """
             }
         }
@@ -72,7 +72,7 @@ pipeline {
         stage('deploy to ekscluster') {
             steps {
                 sh """
-                    aws eks update-kubeconfig --name eks-cluser --region ap-south-1 
+                    aws eks update-kubeconfig --name my-eks-cluser --region us-east-1 
                     kubectl apply deployment.yml
                 """
             }
