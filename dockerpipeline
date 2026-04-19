@@ -68,6 +68,15 @@ pipeline {
                 """
             }
         }
+
+        stage('deploy to eksclsuster') {
+            steps {
+                sh """
+                    aws eks update-kubeconfig --name eks-cluser --region ap-south-1 
+                    kubectl apply deployment.yml
+                """
+            }
+        }  
     }
 }
    
