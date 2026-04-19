@@ -6,11 +6,37 @@ pipeline {
 
         stage('Checkout Source') {
             steps {
-                git branch: 'main',
+                git branch: 'main',                    
                     url: 'https://github.com/ajitkumar-tech/terraform.git'
             }
+        }  
+
+     stage('Terraform Init') {
+            steps {
+                sh '''
+                    terraform init
+                '''
+            }
         }
+
         
+        stage('Terraform Plan') {
+            steps {
+                sh '''
+                    terraform plan 
+                '''
+            }
+        }
+
+        stage('Terraform Apply') {
+            steps {
+                
+                sh '''
+                    terraform apply -auto-approve 
+                '''
+            }
+        }       
+
          stage('login to ecr') {
             steps {
                 sh """
