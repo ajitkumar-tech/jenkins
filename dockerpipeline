@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+
+
+    stages {
+
+        stage('Checkout Source') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/ajitkumar-tech/terraform.git'
+            }
+        }
+        
+         stage('login to ecr') {
+            steps {
+                sh """
+                    aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 748716953870.dkr.ecr.ap-south-1.amazonaws.com
+                """
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh """
+                    docker build -t docker .
+                """
+            }
+        }
+
+        stage('Tag Image for ECR') {
+            steps {
+                sh """
+                    docker tag docker:latest 748716953870.dkr.ecr.ap-south-1.amazonaws.com/docker:latest
+                """
+            }
+        }
+
+        stage('Push Image to ECR') {
+            steps {
+                sh """
+                    docker push 748716953870.dkr.ecr.ap-south-1.amazonaws.com/docker:latest
+                """
+            }
+        }
+    }
+}
+   
