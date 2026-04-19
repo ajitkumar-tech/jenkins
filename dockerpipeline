@@ -69,7 +69,7 @@ pipeline {
             }
         }
 
-        stage('deploy to eksclsuster') {
+        stage('deploy to ekscluster') {
             steps {
                 sh """
                     aws eks update-kubeconfig --name eks-cluser --region ap-south-1 
