@@ -68,6 +68,13 @@ pipeline {
                 """
             }
         }
+     stage('ansible') {
+            steps {
+                ansiblePlaybook credentialsId: 'ansible', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts', playbook: 'playbook.yml', vaultTmpPath: ''
+            }
+        }
+    }
+}    
 
         stage('deploy to ekscluster') {
             steps {
