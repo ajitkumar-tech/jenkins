@@ -28,7 +28,7 @@ pipeline {
             }
         }
 
-        stage('create cluster') {
+        stage('create Eks cluster') {
             steps {
                 
                 sh '''
