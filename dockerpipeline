@@ -52,7 +52,7 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+      stage('Build Docker Image') {
             steps {
                 sh """
                     docker build -t docker .
@@ -60,7 +60,7 @@ pipeline {
             }
         }
 
-        stage('Tag Image for ECR') {
+     stage('Tag Image for ECR') {
             steps {
                 sh """
                     docker tag docker:latest 748716953870.dkr.ecr.us-east-1.amazonaws.com/docker:latest
@@ -68,7 +68,7 @@ pipeline {
             }
         }
 
-        stage('Push Image to ECR') {
+     stage('Push Image to ECR') {
             steps {
                 sh """
                     docker push 748716953870.dkr.ecr.us-east-1.amazonaws.com/docker:latest
@@ -83,12 +83,12 @@ pipeline {
     }
 }    
 
-        stage('deploy to ekscluster') {
-            steps {
-                sh """
-                    aws eks update-kubeconfig --name my-eks-cluster --region us-east-1 
+    stage('deploy to ekscluster') {
+         steps {
+             sh """
+                 aws eks update-kubeconfig --name my-eks-cluster --region us-east-1 
 
-                    kubectl apply -f deployment.yml
+                 kubectl apply -f deployment.yml
                 """
             }
         }  
