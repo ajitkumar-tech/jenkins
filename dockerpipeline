@@ -28,7 +28,7 @@ pipeline {
             }
         }
 
-        stage('Terraform Apply') {
+        stage('create cluster') {
             steps {
                 
                 sh '''
