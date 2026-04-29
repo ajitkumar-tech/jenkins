@@ -1,7 +1,9 @@
 pipeline {
     agent any
-
-
+    environment {
+        APP_NAME = "facebookapp"
+        BUILD_ENV = "dev"
+    }
     stages { 
 
         stage('Checkout Source') {
