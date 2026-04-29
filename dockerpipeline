@@ -7,13 +7,13 @@ pipeline {
     }
     stages { 
 
-        stage('Checkout Source') {
+        stage('Checkout Source code') {
             steps {
                 git branch: 'main',                    
                     url: 'https://github.com/ajitkumar-tech/${REPO_NAME}'
             }
         }  
-      stage('Build with Maven') {
+      stage('generate artifact') {
             steps {
                 sh 'mvn clean package'
             }
