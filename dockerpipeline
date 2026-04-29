@@ -3,6 +3,7 @@ pipeline {
     environment {
         REPO_NAME = "kubernetes.git"
         Region = "ap-south-1"
+        name = "tomcat"
     }
     stages { 
 
