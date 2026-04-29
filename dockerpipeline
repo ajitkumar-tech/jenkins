@@ -64,7 +64,7 @@ pipeline {
      stage('Tag Image for ECR') {
             steps {
                 sh """
-                    docker tag docker:latest 748716953870.dkr.ecr.us-east-1.amazonaws.com/docker:latest
+                    docker tag ${name}:latest 748716953870.dkr.ecr.${region}.amazonaws.com/{name}:latest
                 """
             }
         }
@@ -72,7 +72,7 @@ pipeline {
      stage('Push Image to ECR') {
             steps {
                 sh """
-                    docker push 748716953870.dkr.ecr.us-east-1.amazonaws.com/docker:latest
+                    docker push 748716953870.dkr.ecr.${Region}.amazonaws.com/${name}:latest
                 """
             }
         }
