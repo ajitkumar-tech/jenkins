@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        REPO_NAME = "kubernetes.git"
+        REPO_NAME = "cicd.git"
         REGION = "ap-south-1"
         name = "tomcat"
     }
