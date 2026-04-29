@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout Source code') {
             steps {
                 git branch: 'main',                    
-                    url: 'https://github.com/ajitkumar-tech/${REPO_NAME}'
+                    url: "https://github.com/ajitkumar-tech/${REPO_NAME}"
             }
         }  
       stage('generate artifact') {
