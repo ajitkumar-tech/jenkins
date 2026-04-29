@@ -1,8 +1,7 @@
 pipeline {
     agent any
     environment {
-        APP_NAME = "facebookapp"
-        BUILD_ENV = "dev"
+        REPO_NAME = "kubernetes.git"
     }
     stages { 
 
